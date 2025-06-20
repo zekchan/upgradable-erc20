@@ -46,4 +46,12 @@ contract Token is
     }
 
     function _authorizeUpgrade(address newImplementation) internal override onlyRole(UPGRADER_ROLE) {}
+
+    function burn(uint256 amount) public override onlyRole(BURNER_ROLE) {
+        super.burn(amount);
+    }
+
+    function burnFrom(address account, uint256 value) public override onlyRole(BURNER_ROLE) {
+        super.burnFrom(account, value);
+    }
 }

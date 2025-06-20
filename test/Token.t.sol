@@ -80,4 +80,12 @@ contract TokenTest is Test {
         vm.expectRevert();
         token.burn(1);
     }
+
+    function test_nobody_cannot_burn_via_transfer() public {
+        vm.prank(minter);
+        token.mint(nobody, 1);
+        vm.prank(nobody);
+        vm.expectRevert();
+        token.transfer(address(0), 1);
+    }
 }
