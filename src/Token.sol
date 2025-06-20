@@ -21,13 +21,14 @@ contract MyToken is
 {
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
     bytes32 public constant UPGRADER_ROLE = keccak256("UPGRADER_ROLE");
+    bytes32 public constant BURNER_ROLE = keccak256("BURNER_ROLE");
 
     /// @custom:oz-upgrades-unsafe-allow constructor
     constructor() {
         _disableInitializers();
     }
 
-    function initialize(address defaultAdmin, address minter, address upgrader) public initializer {
+    function initialize(address defaultAdmin, address minter, address upgrader, address burner) public initializer {
         __ERC20_init("MyToken", "MTK");
         __ERC20Burnable_init();
         __AccessControl_init();
@@ -37,6 +38,7 @@ contract MyToken is
         _grantRole(DEFAULT_ADMIN_ROLE, defaultAdmin);
         _grantRole(MINTER_ROLE, minter);
         _grantRole(UPGRADER_ROLE, upgrader);
+        _grantRole(BURNER_ROLE, burner);
     }
 
     function mint(address to, uint256 amount) public onlyRole(MINTER_ROLE) {
