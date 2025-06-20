@@ -11,7 +11,7 @@ import {ERC20PermitUpgradeable} from
 import {Initializable} from "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import {UUPSUpgradeable} from "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 
-contract MyToken is
+contract Token is
     Initializable,
     ERC20Upgradeable,
     ERC20BurnableUpgradeable,
