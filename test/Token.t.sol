@@ -19,8 +19,6 @@ contract TokenTest is Test {
         // using OZ Upgrades.deployUUPSProxy to deploy proxy and implementation contracts for us
         proxy =
             Upgrades.deployUUPSProxy("Token.sol", abi.encodeCall(Token.initialize, (admin, minter, upgrader, burner)));
-        console.log("token proxy");
-        console.log(proxy);
         token = Token(proxy);
     }
     // happy paths
@@ -65,8 +63,8 @@ contract TokenTest is Test {
         assertEq(token.balanceOf(minter), 0);
         assertEq(token.balanceOf(burner), 0);
     }
-
     // sad paths with errors
+
     function test_only_minter_can_mint() public {
         vm.prank(nobody);
         vm.expectRevert();
